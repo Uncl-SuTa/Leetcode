@@ -1,0 +1,13 @@
+class Solution:
+    def commonChars(self, A: List[str]) -> List[str]:
+        Flist =  [float('inf')] * 26
+        ans = []
+        for word in A:
+            list = [0] * 26
+            for ch in word:
+                list[ord(ch) - ord('a')] += 1           
+            for i in range(26):
+                Flist[i] = min(Flist[i], list[i])
+        for i in range(26):
+            ans.extend([chr(ord('a') + i)]*Flist[i])
+        return ans
